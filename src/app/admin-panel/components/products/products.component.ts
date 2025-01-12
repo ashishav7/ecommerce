@@ -19,6 +19,6 @@ export class ProductsComponent implements OnInit{
   }
 
   editProduct(id: number): void {
-    this.router.navigate(['/products/edit', id]);
+    this.router.navigate(['/admin-panel/products/edit', id]);
   }
 }
