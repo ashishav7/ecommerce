@@ -1,0 +1,15 @@
+::ng-deep body {
+    background-color: var(--primary-bg-color);
+    color: var(--primary-text-color);
+}
+  
+/* Apply global styles to mat-toolbar using CSS variables */
+::ng-deep mat-toolbar {
+    background-color: var(--toolbar-bg-color) !important;
+    color: var(--toolbar-text-color) !important;
+}
+
+::ng-deep mat-toolbar button:hover,
+::ng-deep mat-toolbar a:hover {
+    background-color: var(--toolbar-hover-color); /* Use hover color */
+}  
