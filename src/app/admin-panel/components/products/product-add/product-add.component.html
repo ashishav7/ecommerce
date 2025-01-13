@@ -1,1 +1,70 @@
-<p>product-add works!</p>
+<div class="container">
+  <form class="example-container" [formGroup]="productForm">
+    <div class="form-group">
+      <mat-form-field>
+        <mat-label>{{ labels.name }}</mat-label>
+        <input
+          matInput
+          formControlName="name"
+          placeholder="{{ labels.productNamePlaceholder }}"
+          required
+        />
+      </mat-form-field>
+    </div>
+    <div class="form-group">
+      <mat-form-field>
+        <mat-label>{{ labels.description }}</mat-label>
+        <textarea matInput formControlName="description"></textarea>
+        <mat-hint>{{ labels.productDescriptionPlaceholder }}</mat-hint>
+      </mat-form-field>
+    </div>
+    <div class="form-group">
+      <mat-form-field>
+        <mat-label>{{ labels.category }}</mat-label>
+        <input
+          matInput
+          formControlName="category"
+          placeholder="remove this and add dropdown"
+          required
+        />
+      </mat-form-field>
+    </div>
+    <div class="form-group">
+      <mat-form-field>
+        <mat-label>{{ labels.quantity }}</mat-label>
+        <input
+          matInput
+          formControlName="quantity"
+          placeholder="{{ labels.productQuantityPlaceholder }}"
+          required
+        />
+      </mat-form-field>
+    </div>
+    <div class="form-group">
+      <mat-form-field>
+        <mat-label>{{ labels.sellingPrice }}</mat-label>
+        <input
+          matInput
+          formControlName="sellingPrice"
+          placeholder="{{ labels.productSellingPricePlaceholder }}"
+          required
+        />
+      </mat-form-field>
+    </div>
+    <div class="form-group">
+      <mat-form-field>
+        <mat-label>{{ labels.costPrice }}</mat-label>
+        <input
+          matInput
+          formControlName="costPrice"
+          placeholder="{{ labels.productCostPricePlaceholder }}"
+          required
+        />
+      </mat-form-field>
+    </div>
+    <div class="form-group">
+      <label for="image">{{ labels.image }}</label>
+      <input type="file" id="image" formControlName="image" required />
+    </div>
+  </form>
+</div>

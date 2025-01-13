@@ -4,9 +4,8 @@ import { CommonModule } from '@angular/common';
 import { AdminPanelRoutingModule } from './admin-panel-routing.module';
 import { AdminPanelComponent } from './admin-panel.component';
 import { HeaderComponent } from './header/header.component';
-import { MatTableModule } from '@angular/material/table';
-import { MatToolbarModule } from '@angular/material/toolbar';
-import { MatButtonModule } from '@angular/material/button';  
+import { SharedModule } from '../shared/shared.module';
+
 
 
 @NgModule({
@@ -17,9 +16,7 @@ import { MatButtonModule } from '@angular/material/button';
   imports: [
     CommonModule,
     AdminPanelRoutingModule,
-    MatTableModule,
-    MatToolbarModule,
-    MatButtonModule
+    SharedModule
   ]
 })
 export class AdminPanelModule { }

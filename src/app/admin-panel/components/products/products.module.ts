@@ -5,10 +5,7 @@ import { ProductsRoutingModule } from './products-routing.module';
 import { ProductsComponent } from './products.component';
 import { ProductAddComponent } from './product-add/product-add.component';
 import { ProductEditComponent } from './product-edit/product-edit.component';
-import { MatTableModule } from '@angular/material/table';
-import { MatToolbarModule } from '@angular/material/toolbar';
-import { MatButtonModule } from '@angular/material/button';  
-import { AdminPanelModule } from '../../admin-panel.module';
+import { SharedModule } from 'src/app/shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -19,10 +16,7 @@ import { AdminPanelModule } from '../../admin-panel.module';
   imports: [
     CommonModule,
     ProductsRoutingModule,
-    MatTableModule,
-    MatToolbarModule,
-    MatButtonModule,
-    AdminPanelModule
+    SharedModule
   ]
 })
 export class ProductsModule { }
