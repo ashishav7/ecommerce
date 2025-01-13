@@ -11,6 +11,7 @@ import { ConstantsService } from 'src/app/services/constants.service';
 export class ProductAddComponent implements OnInit{
   productForm : FormGroup;
   floatLabel : any = 'auto';
+  categories:any;
   labels:any={};
   constructor(fb:FormBuilder,labels:ConstantsService){
     this.labels=labels.labelMessages;
@@ -25,6 +26,20 @@ export class ProductAddComponent implements OnInit{
     });
   }
   ngOnInit(): void {
-    
+    this.categories=[{
+      categoryId:1,categoryName:'Electronics' 
+    },{
+      categoryId:1,categoryName:'Electronics' 
+    },{
+      categoryId:1,categoryName:'Electronics' 
+    },{
+      categoryId:1,categoryName:'Electronics' 
+    },{
+      categoryId:1,categoryName:'Electronics' 
+    },{
+      categoryId:1,categoryName:'Electronics' 
+    },{
+      categoryId:1,categoryName:'Electronics' 
+    }];
   }
 }
