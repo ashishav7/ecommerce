@@ -7,8 +7,8 @@ import { Observable, of } from 'rxjs';
 })
 export class ApiAdminService {
   private products = [
-    { id: 1, name: 'Product 1', description: 'Description 1', price: 100 },
-    { id: 2, name: 'Product 2', description: 'Description 2', price: 200 },
+    { id: 1, name: 'Product 1', description: 'Description 1', costPrice: 100,category: "Electronics",sellingPrice:150,image: "assets/DSC_5356.JPG" },
+    { id: 2, name: 'Product 2', description: 'Description 2', costPrice: 200,category: "Electronics2",sellingPrice:250,image: "assets/DSC_5356.JPG" },
   ];
 
   getProducts(): Observable<any[]> {

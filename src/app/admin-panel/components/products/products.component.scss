@@ -1,0 +1,34 @@
+/* Center the table container */
+.table-container {
+    display: flex;
+    justify-content: center;
+    margin: 20px auto;
+  }
+  
+  .centered-table {
+    width: 80%;
+    min-width: 600px;
+    margin: 0 auto;
+  }
+  
+  /* Add Product Button */
+  .add-product-button {
+    display: flex;
+    justify-content: flex-end;
+    margin: 20px;
+  }
+  
+  .add-product-button button {
+    background: #f0f0f0;
+    border-radius: 50%;
+  }
+  
+  .mat-icon {
+    font-size: 24px;
+  }
+
+  .form-title{
+    display: flex;
+    justify-content: center;
+    margin: 20px auto;
+  }
