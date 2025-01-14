@@ -3,7 +3,7 @@
   <form [formGroup]="productForm">
     <!-- Product Name -->
     <mat-form-field appearance="outline" class="full-width">
-      <mat-label>Product Name</mat-label>
+      <mat-label>{{labels.name}}</mat-label>
       <input matInput formControlName="name" placeholder="Enter product name" />
       <span *ngIf="productForm.invalid && (productForm.get('name')?.touched || isSubmitted)">
         <mat-error *ngIf="productForm.get('name')?.invalid">{{getNameErrorMessage()}}</mat-error>
@@ -12,7 +12,7 @@
 
     <!-- Product Description -->
     <mat-form-field appearance="outline" class="full-width">
-      <mat-label>Description</mat-label>
+      <mat-label>{{labels.description}}</mat-label>
       <textarea
         matInput
         formControlName="description"
@@ -25,7 +25,7 @@
 
     <!-- Category -->
     <mat-form-field appearance="outline" class="full-width">
-      <mat-label>Category</mat-label>
+      <mat-label>{{labels.category}}</mat-label>
       <mat-select formControlName="category">
         <mat-option
           *ngFor="let category of categories"
@@ -41,7 +41,7 @@
 
     <!-- Quantity -->
     <mat-form-field appearance="outline" class="full-width">
-      <mat-label>Quantity</mat-label>
+      <mat-label>{{labels.quantity}}</mat-label>
       <input
         matInput
         type="number"
@@ -55,7 +55,7 @@
 
     <!-- Selling Price -->
     <mat-form-field appearance="outline" class="full-width">
-      <mat-label>Selling Price</mat-label>
+      <mat-label>{{labels.sellingPrice}}</mat-label>
       <input
         matInput
         type="number"
@@ -69,7 +69,7 @@
 
     <!-- Cost Price -->
     <mat-form-field appearance="outline" class="full-width">
-      <mat-label>Cost Price</mat-label>
+      <mat-label>{{labels.costPrice}}</mat-label>
       <input
         matInput
         type="number"
@@ -83,7 +83,7 @@
 
     <!-- Image Upload -->
     <div class="file-input">
-      <label for="image">Upload Image</label>
+      <label for="image">{{labels.image}}</label>
       <input type="file" id="image" formControlName="image" />
       <span *ngIf="productForm.invalid && (productForm.get('image')?.touched || isSubmitted)">
         <mat-error *ngIf="productForm.get('image')?.invalid">{{getImageErrorMessage()}}</mat-error>
