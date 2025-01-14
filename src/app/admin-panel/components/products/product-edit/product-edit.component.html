@@ -1,1 +1,100 @@
-<p>product-edit works!</p>
+<h2 class="form-title">Edit Product Form</h2>
+<div class="form-container">
+  <form [formGroup]="productForm">
+    <!-- Product Name -->
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>{{labels.name}}</mat-label>
+      <input matInput formControlName="name" placeholder="Enter product name" />
+      <span *ngIf="productForm.invalid && (productForm.get('name')?.touched || isSubmitted)">
+        <mat-error *ngIf="productForm.get('name')?.invalid">{{getNameErrorMessage()}}</mat-error>
+      </span>
+    </mat-form-field>
+
+    <!-- Product Description -->
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>{{labels.description}}</mat-label>
+      <textarea
+        matInput
+        formControlName="description"
+        placeholder="Enter product description"
+      ></textarea>
+      <span *ngIf="productForm.invalid && (productForm.get('description')?.touched || isSubmitted)">
+        <mat-error *ngIf="productForm.get('description')?.invalid">{{getDescriptionErrorMessage()}}</mat-error>
+      </span>
+    </mat-form-field>
+
+    <!-- Category -->
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>{{labels.category}}</mat-label>
+      <mat-select formControlName="category">
+        <mat-option
+          *ngFor="let category of categories"
+          [value]="category.categoryId"
+        >
+          {{ category.categoryName }}
+        </mat-option>
+      </mat-select>
+      <span *ngIf="productForm.invalid && (productForm.get('category')?.touched || isSubmitted)">
+        <mat-error *ngIf="productForm.get('category')?.invalid">{{getCategoryErrorMessage()}}</mat-error>
+      </span>
+    </mat-form-field>
+
+    <!-- Quantity -->
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>{{labels.quantity}}</mat-label>
+      <input
+        matInput
+        type="number"
+        formControlName="quantity"
+        placeholder="Enter quantity"
+      />
+      <span *ngIf="productForm.invalid && (productForm.get('quantity')?.touched || isSubmitted)">
+        <mat-error *ngIf="productForm.get('quantity')?.invalid">{{getQuantityErrorMessage()}}</mat-error>
+      </span>
+    </mat-form-field>
+
+    <!-- Selling Price -->
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>{{labels.sellingPrice}}</mat-label>
+      <input
+        matInput
+        type="number"
+        formControlName="sellingPrice"
+        placeholder="Enter selling price"
+      />
+      <span *ngIf="productForm.invalid && (productForm.get('sellingPrice')?.touched || isSubmitted)">
+        <mat-error *ngIf="productForm.get('sellingPrice')?.invalid">{{getSellingPriceErrorMessage()}}</mat-error>
+      </span>
+    </mat-form-field>
+
+    <!-- Cost Price -->
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>{{labels.costPrice}}</mat-label>
+      <input
+        matInput
+        type="number"
+        formControlName="costPrice"
+        placeholder="Enter cost price"
+      />
+      <span *ngIf="productForm.invalid && (productForm.get('costPrice')?.touched || isSubmitted)">
+        <mat-error *ngIf="productForm.get('costPrice')?.invalid">{{getCostPriceErrorMessage()}}</mat-error>
+      </span>
+    </mat-form-field>
+
+    <!-- Image Upload -->
+    <div class="file-input">
+      <label for="image">{{labels.image}}</label>
+      <input type="file" id="image" formControlName="image" />
+      <span *ngIf="productForm.invalid && (productForm.get('image')?.touched || isSubmitted)">
+        <mat-error *ngIf="productForm.get('image')?.invalid">{{getImageErrorMessage()}}</mat-error>
+      </span>
+    </div>
+
+    <!-- Submit Button -->
+    <div class="button-container">
+      <button mat-raised-button color="primary" type="submit" (click)="onSubmit()">
+        Submit
+      </button>
+    </div>
+  </form>
+</div>

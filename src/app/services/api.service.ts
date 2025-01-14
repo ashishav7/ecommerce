@@ -7,4 +7,37 @@ import { Injectable } from '@angular/core';
 export class ApiService {
 
   constructor(private http: HttpClient) { }
+
+  getCategories(){
+    return [
+      {
+        categoryId: 1,
+        categoryName: 'Electronics',
+      },
+      {
+        categoryId: 1,
+        categoryName: 'Electronics',
+      },
+      {
+        categoryId: 1,
+        categoryName: 'Electronics',
+      },
+      {
+        categoryId: 1,
+        categoryName: 'Electronics',
+      },
+      {
+        categoryId: 1,
+        categoryName: 'Electronics',
+      },
+      {
+        categoryId: 1,
+        categoryName: 'Electronics',
+      },
+      {
+        categoryId: 1,
+        categoryName: 'Electronics',
+      },
+    ];
+  }
 }

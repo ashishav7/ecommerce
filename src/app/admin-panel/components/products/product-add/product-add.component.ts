@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ConstantsAdminService } from 'src/app/services/admin/constants-admin.service';
+import { ApiService } from 'src/app/services/api.service';
 import { ConstantsService } from 'src/app/services/constants.service';
 import { ErrormessagesService } from 'src/app/services/errormessages.service';
 
@@ -11,12 +12,11 @@ import { ErrormessagesService } from 'src/app/services/errormessages.service';
 })
 export class ProductAddComponent implements OnInit{
   productForm : FormGroup;
-  floatLabel : any = 'auto';
   categories:any;
   labels:any={};
   isSubmitted:boolean=false;
   errorMessages:any={};
-  constructor(fb:FormBuilder,labels:ConstantsService,errorNessages:ErrormessagesService){
+  constructor(fb:FormBuilder,labels:ConstantsService,errorNessages:ErrormessagesService,public api:ApiService){
     this.labels=labels.labelMessages;
     this.errorMessages=errorNessages.errorMessages;
     this.productForm = fb.group({
@@ -30,21 +30,7 @@ export class ProductAddComponent implements OnInit{
     });
   }
   ngOnInit(): void {
-    this.categories=[{
-      categoryId:1,categoryName:'Electronics' 
-    },{
-      categoryId:1,categoryName:'Electronics' 
-    },{
-      categoryId:1,categoryName:'Electronics' 
-    },{
-      categoryId:1,categoryName:'Electronics' 
-    },{
-      categoryId:1,categoryName:'Electronics' 
-    },{
-      categoryId:1,categoryName:'Electronics' 
-    },{
-      categoryId:1,categoryName:'Electronics' 
-    }];
+    this.categories= this.api.getCategories();
   }
 
   onSubmit(){
