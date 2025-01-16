@@ -13,10 +13,14 @@
   import { MatTooltipModule } from '@angular/material/tooltip';
   import {MatDialogModule} from '@angular/material/dialog';
 import { DialogsComponent } from './component/dialogs/dialogs.component';
-
+  import{ MatSidenavModule } from '@angular/material/sidenav';
+  import { MatBadgeModule } from '@angular/material/badge';
+  import { MatListModule } from '@angular/material/list';
+import { SidebarComponent } from './component/sidebar/sidebar.component';
   @NgModule({
     declarations: [
-    DialogsComponent
+    DialogsComponent,
+    SidebarComponent
   ],
     imports: [
       CommonModule,
@@ -35,7 +39,11 @@ import { DialogsComponent } from './component/dialogs/dialogs.component';
       MatButtonModule,
       MatIconModule,
       MatTooltipModule,
-      MatDialogModule
+      MatDialogModule,
+      MatSidenavModule,
+      MatBadgeModule,
+      MatSidenavModule,
+      MatListModule
     ],
   exports: [
     // Export the Material Modules to make them available in other modules
@@ -52,8 +60,11 @@ import { DialogsComponent } from './component/dialogs/dialogs.component';
     MatIconModule,
     MatTooltipModule,
     MatDialogModule,
+    MatSidenavModule,
+    MatBadgeModule,
+    MatListModule,
 
-    DialogsComponent
+    SidebarComponent
   ]
   })
   export class SharedModule { }

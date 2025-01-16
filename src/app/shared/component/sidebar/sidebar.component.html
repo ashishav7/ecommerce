@@ -1,0 +1,13 @@
+<mat-toolbar>
+  <div class="logo">
+    <span style="font-weight: bolder; font-size: larger">{{
+      labels.appName
+    }}</span>
+  </div>
+</mat-toolbar>
+<mat-nav-list>
+  <mat-list-item *ngFor="let category of categories">
+    <mat-icon mat-list-icon>dashboard</mat-icon>
+    <span mat-line>{{category.categoryName}}</span>
+  </mat-list-item>
+</mat-nav-list>

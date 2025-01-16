@@ -15,29 +15,21 @@ export class ApiService {
         categoryName: 'Electronics',
       },
       {
-        categoryId: 1,
-        categoryName: 'Electronics',
+        categoryId: 2,
+        categoryName: 'Electronics2',
       },
       {
-        categoryId: 1,
-        categoryName: 'Electronics',
+        categoryId: 3,
+        categoryName: 'Electronics3',
       },
       {
-        categoryId: 1,
-        categoryName: 'Electronics',
+        categoryId: 4,
+        categoryName: 'Electronics4',
       },
       {
-        categoryId: 1,
-        categoryName: 'Electronics',
-      },
-      {
-        categoryId: 1,
-        categoryName: 'Electronics',
-      },
-      {
-        categoryId: 1,
-        categoryName: 'Electronics',
-      },
+        categoryId: 5,
+        categoryName: 'Electronics5',
+      }
     ];
   }
 }
