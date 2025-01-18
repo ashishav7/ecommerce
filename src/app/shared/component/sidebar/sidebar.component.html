@@ -6,8 +6,22 @@
   </div>
 </mat-toolbar>
 <mat-nav-list>
-  <mat-list-item *ngFor="let category of categories">
+  <mat-list-item>
     <mat-icon mat-list-icon>dashboard</mat-icon>
-    <span mat-line>{{category.categoryName}}</span>
+    <button mat-button (click)="goToMenuHeader1()">
+      {{ labelsAdmin.menuHeader1 }}
+    </button>
+  </mat-list-item>
+  <mat-list-item>
+    <mat-icon mat-list-icon>dashboard</mat-icon>
+    <button mat-button (click)="goToMenuHeader2()">
+      {{ labelsAdmin.menuHeader2 }}
+    </button>
+  </mat-list-item>
+  <mat-list-item>
+    <mat-icon mat-list-icon>dashboard</mat-icon>
+    <button mat-button (click)="goToMenuHeader3()">
+      {{ labelsAdmin.menuHeader3 }}
+    </button>
   </mat-list-item>
 </mat-nav-list>
