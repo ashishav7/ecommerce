@@ -17,6 +17,7 @@ import { DialogsComponent } from './component/dialogs/dialogs.component';
   import { MatBadgeModule } from '@angular/material/badge';
   import { MatListModule } from '@angular/material/list';
 import { SidebarComponent } from './component/sidebar/sidebar.component';
+import {MatPaginatorModule} from '@angular/material/paginator';
   @NgModule({
     declarations: [
     DialogsComponent,
@@ -43,7 +44,8 @@ import { SidebarComponent } from './component/sidebar/sidebar.component';
       MatSidenavModule,
       MatBadgeModule,
       MatSidenavModule,
-      MatListModule
+      MatListModule,
+      MatPaginatorModule
     ],
   exports: [
     // Export the Material Modules to make them available in other modules
@@ -63,6 +65,7 @@ import { SidebarComponent } from './component/sidebar/sidebar.component';
     MatSidenavModule,
     MatBadgeModule,
     MatListModule,
+    MatPaginatorModule,
 
     SidebarComponent
   ]

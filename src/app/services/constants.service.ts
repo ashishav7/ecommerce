@@ -22,7 +22,7 @@ export class ConstantsService {
     productSellingPricePlaceholder: "Product Selling Price Placeholder",
     productCostPricePlaceholder: "Product Cost Price Placeholder",
     productQuantityPlaceholder : "Product Quantity Placeholder",
-    productListingHeader:"Add Product",
+    productListingHeader:"Products",
     deleteDialogMessage:"Are you sure you want to delete your product?",
     no: "No",
     yes:"Yes",

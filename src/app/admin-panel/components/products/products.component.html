@@ -1,73 +1,42 @@
-<h2 class="form-title">{{labels.productListingHeader}}</h2>
-<div class="table-container">
-  <table mat-table [dataSource]="dataSource" class="mat-elevation-z8 centered-table" matSort>
-    <!-- ID Column -->
-    <ng-container matColumnDef="id">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header>ID</th>
-      <td mat-cell *matCellDef="let product">{{ product.id }}</td>
-    </ng-container>
+<div class="search-sort-container">
+  <!-- Search Bar -->
+  <mat-form-field appearance="outline" class="search-bar">
+    <mat-label>Search Products</mat-label>
+    <input matInput [(ngModel)]="searchQuery" (input)="applyFilter()" placeholder="Search by name or category" />
+  </mat-form-field>
 
-    <!-- Name Column -->
-    <ng-container matColumnDef="name">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header>Name</th>
-      <td mat-cell *matCellDef="let product">{{ product.name }}</td>
-    </ng-container>
-
-    <!-- Description Column -->
-    <ng-container matColumnDef="description">
-      <th mat-header-cell *matHeaderCellDef>Description</th>
-      <td mat-cell *matCellDef="let product">{{ product.description }}</td>
-    </ng-container>
-
-    <!-- Category Column -->
-    <ng-container matColumnDef="category">
-      <th mat-header-cell *matHeaderCellDef>Category</th>
-      <td mat-cell *matCellDef="let product">{{ product.category }}</td>
-    </ng-container>
-
-    <!-- Cost Price Column -->
-    <ng-container matColumnDef="costPrice">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header>Cost Price</th>
-      <td mat-cell *matCellDef="let product">{{ product.costPrice }}</td>
-    </ng-container>
-
-    <!-- Selling Price Column -->
-    <ng-container matColumnDef="sellingPrice">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header>Selling Price</th>
-      <td mat-cell *matCellDef="let product">{{ product.sellingPrice }}</td>
-    </ng-container>
-
-    <!-- Image Column -->
-    <ng-container matColumnDef="image">
-      <th mat-header-cell *matHeaderCellDef>Image</th>
-      <td mat-cell *matCellDef="let product">
-        <img [src]="product.image" alt="{{ product.name }}" width="50" />
-      </td>
-    </ng-container>
-
-    <!-- Action Column -->
-    <ng-container matColumnDef="action">
-      <th mat-header-cell *matHeaderCellDef>Action</th>
-      <td mat-cell *matCellDef="let product">
-        <button mat-icon-button color="primary" (click)="editProduct(product)">
-          <mat-icon>edit</mat-icon>
-        </button>
-        <button mat-icon-button color="warn" (click)="deleteProduct(product)">
-          <mat-icon>delete</mat-icon>
-        </button>
-      </td>
-    </ng-container>
-
-    <!-- Table Header and Row -->
-    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-  </table>
+  <!-- Sort Dropdown -->
+  <mat-form-field appearance="outline" class="sort-dropdown">
+    <mat-label>Sort By</mat-label>
+    <mat-select [(ngModel)]="sortOption" (selectionChange)="applySort()">
+      <mat-option value="name">Name</mat-option>
+      <mat-option value="category">Category</mat-option>
+      <mat-option value="costPrice">Cost Price</mat-option>
+      <mat-option value="sellingPrice">Selling Price</mat-option>
+    </mat-select>
+  </mat-form-field>
+</div>
+<div class="grid-container">
+  <mat-card *ngFor="let product of paginatedProducts" class="product-card">
+    <mat-card-header>
+      <div mat-card-avatar class="product-image">
+        <img [src]="product.image" alt="{{ product.name }}" />
+      </div>
+      <mat-card-title>{{ product.name }}</mat-card-title>
+      <mat-card-subtitle>{{ product.category }}</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+      <p>{{ product.description }}</p>
+      <p><strong>Cost Price:</strong> ₹{{ product.costPrice }}</p>
+      <p><strong>Selling Price:</strong> ₹{{ product.sellingPrice }}</p>
+    </mat-card-content>
+    <mat-card-actions align="end">
+      <button mat-raised-button color="primary" (click)="editProduct(product)">Edit</button>
+      <button mat-raised-button color="warn" (click)="deleteProduct(product)">Delete</button>
+    </mat-card-actions>
+  </mat-card>
 </div>
 
-<!-- Add Product Button -->
-<div class="add-product-button">
-  <button mat-icon-button color="accent" [routerLink]="'/admin-panel/products/add'" aria-label="Add Product" matTooltip="Add Product"
-  matTooltipPosition="above">
-    <mat-icon>add</mat-icon>
-  </button>
-</div>
+
+<mat-paginator [length]="filteredProducts.length" [pageSize]="pageSize" [pageSizeOptions]="[5, 10, 20]" (page)="handlePageEvent($event)">
+</mat-paginator>
