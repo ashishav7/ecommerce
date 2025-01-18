@@ -33,5 +33,6 @@ export class ConstantsService {
     sortByLabel:"Sort By",
     addProductForm:"Add Product Form",
     submitLabel:"Submit",
+    editProductForm:"Edit Product Form"
   };
 }

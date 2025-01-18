@@ -47,7 +47,7 @@ export class ProductEditComponent implements OnInit {
     }
   }
   constructForm() {
-    this.itemFormElements.formTitle = this.labels.addProductForm;
+    this.itemFormElements.formTitle = this.labels.editProductForm;
     this.itemFormElements.imgRequired = true;
     this.itemFormElements.submitBtnLabel = this.labels.submitLabel;
     let component = this;
