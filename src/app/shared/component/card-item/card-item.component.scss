@@ -1,0 +1,15 @@
+.product-image img {
+    width: 100%;
+    height: auto;
+    border-radius: 4px;
+  }
+
+  mat-card-header {
+    display: flex;
+    align-items: center;
+  }
+  
+  mat-card-actions {
+    justify-content: center;
+    gap: 0.5rem;
+  }

@@ -24,22 +24,7 @@
 </div>
 <div class="grid-container">
   <mat-card *ngFor="let product of paginatedProducts" class="product-card">
-    <mat-card-header>
-      <div mat-card-avatar class="product-image">
-        <img [src]="product.image" alt="{{ product.name }}" />
-      </div>
-      <mat-card-title>{{ product.name }}</mat-card-title>
-      <mat-card-subtitle>{{ product.category }}</mat-card-subtitle>
-    </mat-card-header>
-    <mat-card-content>
-      <p>{{ product.description }}</p>
-      <p><strong>Cost Price:</strong> ₹{{ product.costPrice }}</p>
-      <p><strong>Selling Price:</strong> ₹{{ product.sellingPrice }}</p>
-    </mat-card-content>
-    <mat-card-actions align="end">
-      <button mat-raised-button color="primary" (click)="editProduct(product)">Edit</button>
-      <button mat-raised-button color="warn" (click)="deleteProduct(product)">Delete</button>
-    </mat-card-actions>
+    <app-card-item [item]="product" [costPriceRequired]="true" [sellingPriceRequired]="true" [editDeleteRequired]="true"></app-card-item>
   </mat-card>
 </div>
 

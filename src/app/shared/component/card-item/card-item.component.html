@@ -1,0 +1,25 @@
+<mat-card-header>
+  <div mat-card-avatar class="product-image">
+    <img [src]="item.image" alt="{{ item.name }}" />
+  </div>
+  <mat-card-title>{{ item.name }}</mat-card-title>
+  <mat-card-subtitle>{{ item.category }}</mat-card-subtitle>
+</mat-card-header>
+<mat-card-content>
+  <p>{{ item.description }}</p>
+  <p *ngIf="costPriceRequired"><strong>Cost Price:</strong> ₹{{ item.costPrice }}</p>
+  <p *ngIf="sellingPriceRequired"><strong>Selling Price:</strong> ₹{{ item.sellingPrice }}</p>
+</mat-card-content>
+<mat-card-actions align="end" *ngIf="editDeleteRequired">
+  <button mat-raised-button color="primary" (click)="editProduct(item)">
+    Edit
+  </button>
+  <button mat-raised-button color="warn" (click)="deleteProduct(item)">
+    Delete
+  </button>
+</mat-card-actions>
+<mat-card-actions align="end" *ngIf="buyRequired">
+  <button mat-raised-button color="primary" (click)="buyProduct(item)">
+    Buy
+  </button>
+</mat-card-actions>

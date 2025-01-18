@@ -18,10 +18,12 @@ import { DialogsComponent } from './component/dialogs/dialogs.component';
   import { MatListModule } from '@angular/material/list';
 import { SidebarComponent } from './component/sidebar/sidebar.component';
 import {MatPaginatorModule} from '@angular/material/paginator';
+import { CardItemComponent } from './component/card-item/card-item.component';
   @NgModule({
     declarations: [
     DialogsComponent,
-    SidebarComponent
+    SidebarComponent,
+    CardItemComponent
   ],
     imports: [
       CommonModule,
@@ -67,7 +69,8 @@ import {MatPaginatorModule} from '@angular/material/paginator';
     MatListModule,
     MatPaginatorModule,
 
-    SidebarComponent
+    SidebarComponent,
+    CardItemComponent
   ]
   })
   export class SharedModule { }

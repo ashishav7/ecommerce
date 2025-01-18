@@ -1,13 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
 import { PageEvent } from '@angular/material/paginator';
-import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
 import { ApiAdminService } from 'src/app/services/admin/api-admin.service';
 import { ConstantsAdminService } from 'src/app/services/admin/constants-admin.service';
 import { CommonService } from 'src/app/services/common.service';
 import { ConstantsService } from 'src/app/services/constants.service';
-import { DialogService } from 'src/app/services/dialog.service';
 
 @Component({
   selector: 'app-products',
@@ -18,18 +15,7 @@ export class ProductsComponent implements OnInit {
   products: any = [];
   labels: any = {};
   labelsAdmin: any = {};
-  dataSource: any;
   CS: any;
-  displayedColumns: string[] = [
-    'id',
-    'name',
-    'description',
-    'category',
-    'costPrice',
-    'sellingPrice',
-    'image',
-    'action',
-  ];
   searchQuery: string = '';
   sortOption: string = '';
   filteredProducts: any[] = [];
@@ -42,9 +28,7 @@ export class ProductsComponent implements OnInit {
     private router: Router,
     labels: ConstantsService,
     labelsAdmin: ConstantsAdminService,
-    common: CommonService,
-    public dialog: MatDialog,
-    public dialogService: DialogService
+    common: CommonService
   ) {
     this.CS = common;
     this.labels = labels.labelMessages;
@@ -58,28 +42,15 @@ export class ProductsComponent implements OnInit {
     });
     this.filteredProducts = [...this.products];
     this.updatePaginatedProducts();
-    this.dataSource = new MatTableDataSource(this.products);
   }
 
-  editProduct(product: any): void {
-    this.CS.product = product;
-    this.router.navigate(['/admin-panel/products/edit']);
-  }
-  deleteProduct(product: any): void {
-    this.dialogService
-      .confirm(this.labels.deleteProduct, this.labels.deleteDialogMessage)
-      .subscribe((res) => {
-        if (res) {
-          //call the delete api
-        }
-      });
-  }
 
   applyFilter() {
     this.filteredProducts = this.products.filter((product:any) =>
       product.name.toLowerCase().includes(this.searchQuery.toLowerCase()) ||
       product.category.toLowerCase().includes(this.searchQuery.toLowerCase())
     );
+    this.updatePaginatedProducts();
   }
 
   applySort() {
@@ -94,6 +65,7 @@ export class ProductsComponent implements OnInit {
       }
       return 0;
     });
+    this.updatePaginatedProducts();
   }
 
   handlePageEvent(event: PageEvent) {
