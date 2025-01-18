@@ -19,11 +19,14 @@ import { DialogsComponent } from './component/dialogs/dialogs.component';
 import { SidebarComponent } from './component/sidebar/sidebar.component';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import { CardItemComponent } from './component/card-item/card-item.component';
+import { ItemListingComponent } from './component/item-listing/item-listing.component';
+import { RouterModule } from '@angular/router';
   @NgModule({
     declarations: [
     DialogsComponent,
     SidebarComponent,
-    CardItemComponent
+    CardItemComponent,
+    ItemListingComponent
   ],
     imports: [
       CommonModule,
@@ -31,6 +34,7 @@ import { CardItemComponent } from './component/card-item/card-item.component';
       ReactiveFormsModule,
 
       // Material Modules
+      RouterModule,
       MatCardModule,
       MatFormFieldModule,
       MatInputModule,
@@ -70,7 +74,8 @@ import { CardItemComponent } from './component/card-item/card-item.component';
     MatPaginatorModule,
 
     SidebarComponent,
-    CardItemComponent
+    CardItemComponent,
+    ItemListingComponent
   ]
   })
   export class SharedModule { }

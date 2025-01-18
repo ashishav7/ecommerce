@@ -7,7 +7,6 @@ import { HttpClientModule } from '@angular/common/http';
 import { MatTableModule } from '@angular/material/table';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SharedModule } from './shared/shared.module';
-import { CardItemComponent } from './shared/component/card-item/card-item.component';
 
 @NgModule({
   declarations: [

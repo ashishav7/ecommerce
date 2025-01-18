@@ -26,6 +26,10 @@ export class ConstantsService {
     deleteDialogMessage:"Are you sure you want to delete your product?",
     no: "No",
     yes:"Yes",
-    deleteProduct:"Delete Product"
+    deleteProduct:"Delete Product",
+    addProduct: "Add Product",
+    searchProductPlaceholder: "Search by name or category",
+    searchProductLabel:"Search",
+    sortByLabel:"Sort By"
   };
 }

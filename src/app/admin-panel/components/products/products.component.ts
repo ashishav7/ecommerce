@@ -1,9 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { PageEvent } from '@angular/material/paginator';
-import { Router } from '@angular/router';
 import { ApiAdminService } from 'src/app/services/admin/api-admin.service';
-import { ConstantsAdminService } from 'src/app/services/admin/constants-admin.service';
-import { CommonService } from 'src/app/services/common.service';
 import { ConstantsService } from 'src/app/services/constants.service';
 
 @Component({
@@ -13,71 +9,45 @@ import { ConstantsService } from 'src/app/services/constants.service';
 })
 export class ProductsComponent implements OnInit {
   products: any = [];
+  addProductBtn: any = {};
+  searchBtnConfig: any = {};
+  sortBtnConfig: any = {};
+  paginationConfig:any = {};
   labels: any = {};
-  labelsAdmin: any = {};
-  CS: any;
-  searchQuery: string = '';
-  sortOption: string = '';
-  filteredProducts: any[] = [];
-  pageSize: number = 10;
-  currentPage: number = 0;
-  paginatedProducts: any[] = [];
-  
-  constructor(
-    private api: ApiAdminService,
-    private router: Router,
-    labels: ConstantsService,
-    labelsAdmin: ConstantsAdminService,
-    common: CommonService
-  ) {
-    this.CS = common;
+  constructor(private api: ApiAdminService, labels: ConstantsService) {
     this.labels = labels.labelMessages;
-    this.labelsAdmin = labelsAdmin.labelMessages;
   }
 
   ngOnInit(): void {
-    console.log(this.labels);
+    this.addProductBtn = {
+      view: true,
+      tooltip: this.labels.addProduct,
+      routingLink: '/admin-panel/products/add',
+      tooltipPosition: 'above',
+    };
+
+    this.searchBtnConfig = {
+      label: this.labels.searchProductLabel,
+      placeholder: this.labels.searchProductPlaceholder,
+    };
+
+    this.sortBtnConfig = {
+      required: true,
+      label: this.labels.sortByLabel,
+      options: [
+        { value: 'name', name: 'Name' },
+        { value: 'category', name: 'Category' },
+        { value: 'costPrice', name: 'Price' },
+      ],
+    };
+    this.paginationConfig = {
+      required: true,
+      pagesize: 10,
+      pageSizeOptions: [5, 10, 20],
+    };
+
     this.api.getProducts().subscribe((data) => {
       this.products = data;
     });
-    this.filteredProducts = [...this.products];
-    this.updatePaginatedProducts();
   }
-
-
-  applyFilter() {
-    this.filteredProducts = this.products.filter((product:any) =>
-      product.name.toLowerCase().includes(this.searchQuery.toLowerCase()) ||
-      product.category.toLowerCase().includes(this.searchQuery.toLowerCase())
-    );
-    this.updatePaginatedProducts();
-  }
-
-  applySort() {
-    this.filteredProducts.sort((a, b) => {
-      const valueA = a[this.sortOption];
-      const valueB = b[this.sortOption];
-
-      if (typeof valueA === 'string' && typeof valueB === 'string') {
-        return valueA.localeCompare(valueB); // String comparison
-      } else if (typeof valueA === 'number' && typeof valueB === 'number') {
-        return valueA - valueB; // Numeric comparison
-      }
-      return 0;
-    });
-    this.updatePaginatedProducts();
-  }
-
-  handlePageEvent(event: PageEvent) {
-    this.pageSize = event.pageSize;
-    this.currentPage = event.pageIndex;
-    this.updatePaginatedProducts();
-  }
-
-  updatePaginatedProducts() {
-    const startIndex = this.currentPage * this.pageSize;
-    const endIndex = startIndex + this.pageSize;
-    this.paginatedProducts = this.filteredProducts.slice(startIndex, endIndex);
-  }
-
 }

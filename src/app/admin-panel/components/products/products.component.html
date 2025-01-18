@@ -1,33 +1,7 @@
-<div class="search-sort-container">
-  <div>
-    <button mat-icon-button color="accent" [routerLink]="'/admin-panel/products/add'" aria-label="Add Product" matTooltip="Add Product" matTooltipPosition="above">
-      <mat-icon>add</mat-icon>
-    </button>
-  </div>
-
-  <!-- Search Bar -->
-  <mat-form-field appearance="outline" class="search-bar">
-    <mat-label>Search Products</mat-label>
-    <input matInput [(ngModel)]="searchQuery" (input)="applyFilter()" placeholder="Search by name or category" />
-  </mat-form-field>
-
-  <!-- Sort Dropdown -->
-  <mat-form-field appearance="outline" class="sort-dropdown">
-    <mat-label>Sort By</mat-label>
-    <mat-select [(ngModel)]="sortOption" (selectionChange)="applySort()">
-      <mat-option value="name">Name</mat-option>
-      <mat-option value="category">Category</mat-option>
-      <mat-option value="costPrice">Cost Price</mat-option>
-      <mat-option value="sellingPrice">Selling Price</mat-option>
-    </mat-select>
-  </mat-form-field>
-</div>
-<div class="grid-container">
-  <mat-card *ngFor="let product of paginatedProducts" class="product-card">
-    <app-card-item [item]="product" [costPriceRequired]="true" [sellingPriceRequired]="true" [editDeleteRequired]="true"></app-card-item>
-  </mat-card>
-</div>
-
-
-<mat-paginator [length]="filteredProducts.length" [pageSize]="pageSize" [pageSizeOptions]="[5, 10, 20]" (page)="handlePageEvent($event)">
-</mat-paginator>
+<app-item-listing [list]="products" 
+[addBtnConfig]="addProductBtn" 
+[searchBtnConfig] = "searchBtnConfig"
+[sortBtnConfig]="sortBtnConfig"
+[paginationConfig]="paginationConfig"
+>
+</app-item-listing>
