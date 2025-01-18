@@ -8,7 +8,7 @@ export interface Item{
     placeholder: string;
     errorMessages:{key:string,value:string}[];
     validators:ValidatorFn[];
-    options:[{value:string,name:string}];
+    options:{value:string,name:string}[];
 }
 
 export type ItemArray = Item[];
