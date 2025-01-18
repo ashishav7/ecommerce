@@ -166,6 +166,7 @@ function addToItemFormElementsArray(
     validators: validators,
     errorMessages: errorMessages,
     options: options,
+    initialValue:''
   };
   component.itemFormElements.formElements.push(item);
 }

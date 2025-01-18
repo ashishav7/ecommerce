@@ -34,7 +34,7 @@ export class AddItemComponent implements OnInit {
     });
   }
   addDynamicControl(element:Item){
-    const control = new FormControl('',element.validators);
+    const control = new FormControl(element.initialValue,element.validators);
     this.itemForm.addControl(element.formControlName,control);
   }
   onSubmit(){
