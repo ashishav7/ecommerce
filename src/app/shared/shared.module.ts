@@ -21,12 +21,14 @@ import {MatPaginatorModule} from '@angular/material/paginator';
 import { CardItemComponent } from './component/card-item/card-item.component';
 import { ItemListingComponent } from './component/item-listing/item-listing.component';
 import { RouterModule } from '@angular/router';
+import { AddItemComponent } from './component/add-item/add-item.component';
   @NgModule({
     declarations: [
     DialogsComponent,
     SidebarComponent,
     CardItemComponent,
-    ItemListingComponent
+    ItemListingComponent,
+    AddItemComponent
   ],
     imports: [
       CommonModule,
@@ -75,7 +77,8 @@ import { RouterModule } from '@angular/router';
 
     SidebarComponent,
     CardItemComponent,
-    ItemListingComponent
+    ItemListingComponent,
+    AddItemComponent
   ]
   })
   export class SharedModule { }

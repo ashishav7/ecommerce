@@ -1,0 +1,155 @@
+<h2 class="form-title">{{ itemFormElements.formTitle }}</h2>
+<div class="form-container">
+  <form [formGroup]="itemForm">
+    <!-- Product Name -->
+    <div *ngFor="let item of itemFormElements.formElements">
+      <mat-form-field
+        appearance="outline"
+        class="full-width"
+        *ngIf="item.type === 'text'"
+      >
+        <mat-label>{{ item.label }}</mat-label>
+        <input
+          matInput
+          [formControlName]="item.formControlName"
+          placeholder="{{ item.placeholder }}"
+        />
+        <span
+          *ngIf="
+            itemForm.invalid &&
+            (itemForm.get(item.formControlName)?.touched || isSubmitted)
+          "
+        >
+          <div *ngFor="let error of item.errorMessages">
+            <mat-error
+              *ngIf="itemForm.get(item.formControlName)?.hasError(error.key)"
+              >{{ error.value }}</mat-error
+            >
+          </div>
+        </span>
+      </mat-form-field>
+
+      <!-- Product Description -->
+      <mat-form-field
+        appearance="outline"
+        class="full-width"
+        *ngIf="item.type === 'textarea'"
+      >
+        <mat-label>{{ item.label }}</mat-label>
+        <textarea
+          matInput
+          [formControlName]="item.formControlName"
+          placeholder="{{ item.placeholder }}"
+        ></textarea>
+        <span
+          *ngIf="
+            itemForm.invalid &&
+            (itemForm.get(item.formControlName)?.touched || isSubmitted)
+          "
+        >
+          <div *ngFor="let error of item.errorMessages">
+            <mat-error
+              *ngIf="itemForm.get(item.formControlName)?.hasError(error.key)"
+              >{{ error.value }}</mat-error
+            >
+          </div>
+        </span>
+      </mat-form-field>
+
+      <!-- Category -->
+      <mat-form-field
+        appearance="outline"
+        class="full-width"
+        *ngIf="item.type === 'dropdown'"
+      >
+        <mat-label>{{ item.label }}</mat-label>
+        <mat-select [formControlName]="item.formControlName">
+          <mat-option
+            *ngFor="let option of item.options"
+            [value]="option.value"
+          >
+            {{ option.name }}
+          </mat-option>
+        </mat-select>
+        <span
+          *ngIf="
+            itemForm.invalid &&
+            (itemForm.get(item.formControlName)?.touched || isSubmitted)
+          "
+        >
+          <div *ngFor="let error of item.errorMessages">
+            <mat-error
+              *ngIf="itemForm.get(item.formControlName)?.hasError(error.key)"
+              >{{ error.value }}</mat-error
+            >
+          </div>
+        </span>
+      </mat-form-field>
+
+      <!-- Quantity -->
+      <mat-form-field
+        appearance="outline"
+        class="full-width"
+        *ngIf="item.type === 'number'"
+      >
+        <mat-label>{{ item.label }}</mat-label>
+        <input
+          matInput
+          type="number"
+          [formControlName]="item.formControlName"
+          placeholder="{{ item.placeholder }}"
+        />
+        <span
+          *ngIf="
+            itemForm.invalid &&
+            (itemForm.get(item.formControlName)?.touched || isSubmitted)
+          "
+        >
+          <div *ngFor="let error of item.errorMessages">
+            <mat-error
+              *ngIf="itemForm.get(item.formControlName)?.hasError(error.key)"
+              >{{ error.value }}</mat-error
+            >
+          </div>
+        </span>
+      </mat-form-field>
+
+      <!-- Image Upload -->
+      <div
+        class="file-input"
+        *ngIf="itemFormElements.imgRequired && item.type === 'image'"
+      >
+        <label for="image">{{ item.label }}</label>
+        <input
+          type="file"
+          id="image"
+          [formControlName]="item.formControlName"
+        />
+        <span
+          *ngIf="
+            itemForm.invalid &&
+            (itemForm.get(item.formControlName)?.touched || isSubmitted)
+          "
+        >
+          <div *ngFor="let error of item.errorMessages">
+            <mat-error
+              *ngIf="itemForm.get(item.formControlName)?.hasError(error.key)"
+              >{{ error.value }}</mat-error
+            >
+          </div>
+        </span>
+      </div>
+    </div>
+    <!-- Submit Button -->
+    <div class="button-container">
+      <button
+        mat-raised-button
+        color="primary"
+        type="submit"
+        (click)="onSubmit()"
+      >
+        {{ itemFormElements.submitBtnLabel }}
+      </button>
+    </div>
+  </form>
+</div>

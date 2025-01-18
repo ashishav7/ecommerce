@@ -30,6 +30,8 @@ export class ConstantsService {
     addProduct: "Add Product",
     searchProductPlaceholder: "Search by name or category",
     searchProductLabel:"Search",
-    sortByLabel:"Sort By"
+    sortByLabel:"Sort By",
+    addProductForm:"Add Product Form",
+    submitLabel:"Submit",
   };
 }

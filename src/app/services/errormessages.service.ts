@@ -9,6 +9,7 @@ export class ErrormessagesService {
   readonly errorMessages={
     required : "is required",
     productNameRequired : `Name is required`,
+    minLength:'Min Length is 3',
     productDescriptionRequired : "Description is required",
     productCategoryRequired : "Category is required",
     productQuantityRequired : "Quantity is required",
