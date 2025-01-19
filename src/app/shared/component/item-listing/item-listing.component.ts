@@ -4,6 +4,7 @@ import { TooltipPosition } from '@angular/material/tooltip';
 import { ConstantsAdminService } from 'src/app/services/admin/constants-admin.service';
 import { CommonService } from 'src/app/services/common.service';
 import { ConstantsService } from 'src/app/services/constants.service';
+import { ItemConf, ListItem } from 'src/app/types/list-item';
 
 @Component({
   selector: 'app-item-listing',
@@ -11,7 +12,17 @@ import { ConstantsService } from 'src/app/services/constants.service';
   styleUrls: ['./item-listing.component.scss']
 })
 export class ItemListingComponent implements OnInit{
-  @Input() list:any=[];
+  @Input() list: ListItem[] = [];
+
+  @Input() itemConf:ItemConf={
+    imageRequired: true,
+    subtitleRequired: true,
+    contentRequired: true,
+    contentStrongItem1Required: true,
+    contentStrongItem2Required: true,
+    actionbtnrequired:true
+  };
+
   @Input() paginationConfig:{required:boolean,pagesize:number,pageSizeOptions:number[]}={
     required:true,
     pagesize:5,

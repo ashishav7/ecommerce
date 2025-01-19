@@ -5,6 +5,7 @@ import { ConstantsAdminService } from 'src/app/services/admin/constants-admin.se
 import { CommonService } from 'src/app/services/common.service';
 import { ConstantsService } from 'src/app/services/constants.service';
 import { DialogService } from 'src/app/services/dialog.service';
+import { ItemConf, ListItem } from 'src/app/types/list-item';
 
 @Component({
   selector: 'app-card-item',
@@ -12,11 +13,27 @@ import { DialogService } from 'src/app/services/dialog.service';
   styleUrls: ['./card-item.component.scss'],
 })
 export class CardItemComponent implements OnInit {
-  @Input() item:any;
-  @Input() costPriceRequired:boolean=false;
-  @Input() sellingPriceRequired:boolean=false;
-  @Input() editDeleteRequired:boolean = false;
-  @Input() buyRequired:boolean=false;
+  @Input() item:ListItem={
+    id:"1",
+    image:"-1",
+    title: "Product",
+    subtitle: "Category",
+    content: "Description",
+    contentStrongItem1Label:"Cost Price",
+    contentStrongItem1Value:"100",
+    contentStrongItem2Label:"Cost Price",
+    contentStrongItem2Value:"100",
+    buttons:[]
+  }; 
+  @Input() config:ItemConf={
+    imageRequired: true,
+    subtitleRequired: true,
+    contentRequired: true,
+    contentStrongItem1Required: true,
+    contentStrongItem2Required: true,
+    actionbtnrequired:true
+  };
+
   
   labels: any = {};
   labelsAdmin: any = {};

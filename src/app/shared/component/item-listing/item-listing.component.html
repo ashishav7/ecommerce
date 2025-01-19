@@ -35,9 +35,6 @@
   <mat-card *ngFor="let product of paginatedItems" class="product-card">
     <app-card-item
       [item]="product"
-      [costPriceRequired]="true"
-      [sellingPriceRequired]="true"
-      [editDeleteRequired]="true"
     ></app-card-item>
   </mat-card>
 </div>

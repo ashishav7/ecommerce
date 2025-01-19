@@ -1,25 +1,19 @@
 <mat-card-header>
-  <div mat-card-avatar class="product-image">
-    <img [src]="item.image" alt="{{ item.name }}" />
+  <div mat-card-avatar class="product-image" *ngIf="config.imageRequired">
+    <img [src]="item.image" alt="{{ item.title }}" />
   </div>
-  <mat-card-title>{{ item.name }}</mat-card-title>
-  <mat-card-subtitle>{{ item.category }}</mat-card-subtitle>
+  <mat-card-title>{{ item.title }}</mat-card-title>
+  <mat-card-subtitle *ngIf="config.subtitleRequired">{{ item.subtitle }}</mat-card-subtitle>
 </mat-card-header>
 <mat-card-content>
-  <p>{{ item.description }}</p>
-  <p *ngIf="costPriceRequired"><strong>Cost Price:</strong> ₹{{ item.costPrice }}</p>
-  <p *ngIf="sellingPriceRequired"><strong>Selling Price:</strong> ₹{{ item.sellingPrice }}</p>
+  <p *ngIf="config.contentRequired">{{ item.content }}</p>
+  <p *ngIf="config.contentStrongItem1Required"><strong>{{ item.contentStrongItem1Label }}</strong> {{ item.contentStrongItem1Value }}</p>
+  <p *ngIf="config.contentStrongItem2Required"><strong>{{ item.contentStrongItem2Label }}</strong> {{ item.contentStrongItem2Value }}</p>
 </mat-card-content>
-<mat-card-actions align="end" *ngIf="editDeleteRequired">
-  <button mat-raised-button color="primary" (click)="editProduct(item)">
-    Edit
-  </button>
-  <button mat-raised-button color="warn" (click)="deleteProduct(item)">
-    Delete
-  </button>
-</mat-card-actions>
-<mat-card-actions align="end" *ngIf="buyRequired">
-  <button mat-raised-button color="primary" (click)="buyProduct(item)">
-    Buy
-  </button>
+<mat-card-actions align="end" *ngIf="config.actionbtnrequired">
+  <div *ngFor="let btn of item.buttons">
+    <button mat-raised-button [color]="btn.btnColor">
+      {{ btn.btnlabel }}
+    </button>
+  </div>
 </mat-card-actions>
