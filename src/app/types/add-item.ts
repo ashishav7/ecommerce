@@ -1,4 +1,4 @@
-import { ValidatorFn, Validators } from "@angular/forms";
+import { ValidatorFn } from "@angular/forms";
 
 export interface Item{
     id:string;

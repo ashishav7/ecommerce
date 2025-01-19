@@ -33,6 +33,12 @@ export class ConstantsService {
     sortByLabel:"Sort By",
     addProductForm:"Add Product Form",
     submitLabel:"Submit",
-    editProductForm:"Edit Product Form"
+    editProductForm:"Edit Product Form",
+    addCategoryForm:"Add Category Form",
+    categoryName:"Category Name",
+    categoryNamePlaceholder:"Category Name Placeholder",
+    slugLabel:"Slug",
+    slugPlaceholder:"Slug Placeholder",
+    categoryImage:"Category Image"
   };
 }

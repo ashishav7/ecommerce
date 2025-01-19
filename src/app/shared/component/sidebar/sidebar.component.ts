@@ -30,7 +30,7 @@ export class SidebarComponent implements OnInit {
     this.router.navigate(['/admin-panel/products']);
   }
   goToMenuHeader2() {
-    this.router.navigate(['/admin-panel']);
+    this.router.navigate(['/admin-panel/category']);
   }
   goToMenuHeader3() {
     this.router.navigate(['/admin-panel/orders']);

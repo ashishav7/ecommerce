@@ -4,6 +4,7 @@ import { ApiService } from 'src/app/services/api.service';
 import { ConstantsService } from 'src/app/services/constants.service';
 import { ErrormessagesService } from 'src/app/services/errormessages.service';
 import { AddItem, Item } from 'src/app/types/add-item';
+import { ValidatorI } from 'src/app/services/validator.service';
 
 @Component({
   selector: 'app-product-add',
@@ -54,8 +55,8 @@ export class ProductAddComponent implements OnInit {
       this.labels.productNamePlaceholder,
       [Validators.required, Validators.minLength(3)],
       [
-        { key: 'required', value: this.errorMessages.productNameRequired },
-        { key: 'minlength', value: this.errorMessages.minLength },
+        { key: ValidatorI.required, value: this.errorMessages.productNameRequired },
+        { key: ValidatorI.minlength, value: this.errorMessages.minLength },
       ],
       [{ value: '', name: '' }]
     );
@@ -70,7 +71,7 @@ export class ProductAddComponent implements OnInit {
       [Validators.required],
       [
         {
-          key: 'required',
+          key: ValidatorI.required,
           value: this.errorMessages.productDescriptionRequired,
         },
       ],
@@ -85,7 +86,7 @@ export class ProductAddComponent implements OnInit {
       'category',
       this.labels.productDescriptionPlaceholder,
       [Validators.required],
-      [{ key: 'required', value: this.errorMessages.productCategoryRequired }],
+      [{ key: ValidatorI.required, value: this.errorMessages.productCategoryRequired }],
       this.options
     );
 
@@ -97,7 +98,7 @@ export class ProductAddComponent implements OnInit {
       'quantity',
       this.labels.productQuantityPlaceholder,
       [Validators.required],
-      [{ key: 'required', value: this.errorMessages.productQuantityRequired }],
+      [{ key: ValidatorI.required, value: this.errorMessages.productQuantityRequired }],
       [{ value: '', name: '' }]
     );
 
@@ -111,7 +112,7 @@ export class ProductAddComponent implements OnInit {
       [Validators.required],
       [
         {
-          key: 'required',
+          key: ValidatorI.required,
           value: this.errorMessages.productSellingPriceRequired,
         },
       ],
@@ -126,7 +127,7 @@ export class ProductAddComponent implements OnInit {
       'costPrice',
       this.labels.productCostPricePlaceholder,
       [Validators.required],
-      [{ key: 'required', value: this.errorMessages.productCostPriceRequired }],
+      [{ key: ValidatorI.required, value: this.errorMessages.productCostPriceRequired }],
       [{ value: '', name: '' }]
     );
 
@@ -138,7 +139,7 @@ export class ProductAddComponent implements OnInit {
       'image',
       this.labels.productDescriptionPlaceholder,
       [Validators.required],
-      [{ key: 'required', value: this.errorMessages.productImageRequired }],
+      [{ key: ValidatorI.required, value: this.errorMessages.productImageRequired }],
       [{ value: '', name: '' }]
     );
   }

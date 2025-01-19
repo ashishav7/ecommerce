@@ -7,7 +7,8 @@ const routes: Routes = [{ path: '', component: AdminPanelComponent,
   children: [
     { path: 'dashboard', component: DashboardComponent },
     { path: 'products', loadChildren: () => import('./components/products/products.module').then(m => m.ProductsModule) },
-    { path: 'orders', loadChildren: () => import('./components/orders/orders.module').then(m => m.OrdersModule) }
+    { path: 'orders', loadChildren: () => import('./components/orders/orders.module').then(m => m.OrdersModule) },
+    { path: 'category', loadChildren:()=> import('./components/category/category.module').then(m => m.CategoryModule)},
   ]
  }]
 @NgModule({
