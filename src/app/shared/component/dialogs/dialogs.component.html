@@ -3,6 +3,6 @@
   {{data.message}}
 </div>
 <div mat-dialog-actions>
-  <button mat-button mat-dialog-close>{{labels.no}}</button>
-  <button mat-button mat-dialog-close cdkFocusInitial>{{labels.yes}}</button>
+  <button mat-button mat-dialog-close (click)="onNoClick()">{{labels.no}}</button>
+  <button mat-button mat-dialog-close cdkFocusInitial (click)="onYesClick()">{{labels.yes}}</button>
 </div>

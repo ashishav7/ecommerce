@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { ApiAdminService } from 'src/app/services/admin/api-admin.service';
+import { CommonService } from 'src/app/services/common.service';
 import { ConstantsService } from 'src/app/services/constants.service';
+import { DialogService } from 'src/app/services/dialog.service';
 import { ItemConf, ListItem } from 'src/app/types/list-item';
 import {Product} from 'src/app/types/product';
 
@@ -18,7 +21,13 @@ export class ProductsComponent implements OnInit {
   paginationConfig: any = {};
   itemConf: ItemConf;
   labels: any = {};
-  constructor(private api: ApiAdminService, labels: ConstantsService) {
+  constructor(
+      private api: ApiAdminService,
+      labels: ConstantsService,
+      public CS: CommonService,
+      public router:Router,
+      public dialogService: DialogService
+    ) {
     this.labels = labels.labelMessages;
     this.itemConf = {
       imageRequired: true,
@@ -74,10 +83,31 @@ export class ProductsComponent implements OnInit {
       contentStrongItem2Value:product.sellingPrice.toString(),
      
       buttons:[
-        {btnlabel:"Edit",btnColor:"primary"},
-        {btnlabel:"Delete",btnColor:"warn"},
-        {btnlabel:"Buy",btnColor:"primary"}
-      ],
+        {btnlabel:"Edit",btnColor:"primary",btnAction:() => this.editFunction(product)},
+        {btnlabel:"Delete",btnColor:"warn",btnAction:() => this.deleteFunction(product)},
+        {btnlabel:"Buy",btnColor:"primary",btnAction:() => this.buyFunction(product)}
+      ]
     }));
   }
+  editFunction(product:Product){
+    this.CS.product = product;
+    this.router.navigate(['/admin-panel/products/edit']);
+  }
+
+  deleteFunction(product: any): void {
+    this.dialogService
+      .confirm(this.labels.deleteProduct, this.labels.deleteDialogMessage)
+      .subscribe((res) => {
+        if (res) {
+          //call the delete api
+          console.log(res);
+        }
+        console.log("Outside " , res);
+      });
+  }
+
+  buyFunction(product:Product){
+    console.log("Buy Clicked");
+  }
+
 }

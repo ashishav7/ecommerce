@@ -1,6 +1,7 @@
 export interface BtnConf {
   btnlabel: string;
   btnColor: string;
+  btnAction:()=>void
 }
 
 export interface ItemConf {

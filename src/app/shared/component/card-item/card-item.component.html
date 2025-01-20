@@ -12,7 +12,7 @@
 </mat-card-content>
 <mat-card-actions align="end" *ngIf="config.actionbtnrequired">
   <div *ngFor="let btn of item.buttons">
-    <button mat-raised-button [color]="btn.btnColor">
+    <button mat-raised-button [color]="btn.btnColor" (click)="btn.btnAction()">
       {{ btn.btnlabel }}
     </button>
   </div>
