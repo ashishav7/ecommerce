@@ -36,7 +36,6 @@ export class CategoryAddComponent {
   }
 
   constructForm() {
-
     this.addToItemFormElementsArray(
       '-1',
       'text',
@@ -81,22 +80,20 @@ export class CategoryAddComponent {
     );
 
     this.addToItemFormElementsArray(
-          '-1',
-          'image',
-          this.labels.categoryImage,
-          CategoryFormControlI.categoryImage,
-          this.labels.productDescriptionPlaceholder,
-          [Validators.required],
-          [
-            {
-              key: ValidatorI.required,
-              value: this.errorMessages.categoryImageRequired,
-            },
-          ],
-          [{ value: '', name: '' }]
-        );
-
-
+      '-1',
+      'image',
+      this.labels.categoryImage,
+      CategoryFormControlI.categoryImage,
+      this.labels.productDescriptionPlaceholder,
+      [Validators.required],
+      [
+        {
+          key: ValidatorI.required,
+          value: this.errorMessages.categoryImageRequired,
+        },
+      ],
+      [{ value: '', name: '' }]
+    );
   }
   addToItemFormElementsArray(
     id: string,
