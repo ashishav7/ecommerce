@@ -16,6 +16,7 @@ export type ItemArray = Item[];
 
 export interface AddItem {
   submitBtnLabel:string;
+  resetBtnLabel:string;
   formTitle:string;
   imgRequired:boolean;
   formElements: ItemArray;

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ProductFormControlI } from 'src/app/form-group-controls/product';
 import { ApiService } from 'src/app/services/api.service';
 import { CommonService } from 'src/app/services/common.service';
 import { ConstantsService } from 'src/app/services/constants.service';
@@ -12,6 +13,7 @@ import { AddItem, Item } from 'src/app/types/add-item';
   styleUrls: ['./product-edit.component.scss'],
 })
 export class ProductEditComponent implements OnInit {
+
   categories: any;
     options: any = [];
     errorMessages: any = {};
@@ -22,6 +24,7 @@ export class ProductEditComponent implements OnInit {
       formTitle: 'Add Product Form',
       imgRequired: false,
       formElements: [],
+      resetBtnLabel: 'Reset'
     };
   product:any={};
   constructor(
@@ -56,7 +59,7 @@ export class ProductEditComponent implements OnInit {
       '-1',
       'text',
       this.labels.name,
-      'name',
+      ProductFormControlI.productName,
       this.labels.productNamePlaceholder,
       [Validators.required, Validators.minLength(3)],
       [
@@ -72,7 +75,7 @@ export class ProductEditComponent implements OnInit {
       '-1',
       'textarea',
       this.labels.description,
-      'description',
+      ProductFormControlI.productDescription,
       this.labels.productDescriptionPlaceholder,
       [Validators.required],
       [
@@ -90,7 +93,7 @@ export class ProductEditComponent implements OnInit {
       '-1',
       'dropdown',
       this.labels.category,
-      'category',
+      ProductFormControlI.productCategory,
       this.labels.productDescriptionPlaceholder,
       [Validators.required],
       [{ key: 'required', value: this.errorMessages.productCategoryRequired }],
@@ -103,7 +106,7 @@ export class ProductEditComponent implements OnInit {
       '-1',
       'number',
       this.labels.quantity,
-      'quantity',
+      ProductFormControlI.productQuantity,
       this.labels.productQuantityPlaceholder,
       [Validators.required],
       [{ key: 'required', value: this.errorMessages.productQuantityRequired }],
@@ -116,7 +119,7 @@ export class ProductEditComponent implements OnInit {
       '-1',
       'number',
       this.labels.sellingPrice,
-      'sellingPrice',
+      ProductFormControlI.productSellingPrice,
       this.labels.productSellingPricePlaceholder,
       [Validators.required],
       [
@@ -134,7 +137,7 @@ export class ProductEditComponent implements OnInit {
       '-1',
       'number',
       this.labels.costPrice,
-      'costPrice',
+      ProductFormControlI.productCostPrice,
       this.labels.productCostPricePlaceholder,
       [Validators.required],
       [{ key: 'required', value: this.errorMessages.productCostPriceRequired }],
@@ -147,13 +150,17 @@ export class ProductEditComponent implements OnInit {
       '-1',
       'image',
       this.labels.image,
-      'image',
+      ProductFormControlI.productImage,
       this.labels.productDescriptionPlaceholder,
       [Validators.required],
-      [{ key: 'required', value: this.errorMessages.productImageRequired }],
+      [{ key: 'required', value: this.errorMessages.ProductFormControlImageRequired }],
       [{ value: '', name: '' }],
       this.product.image
     );
+  }
+
+  editProduct(editForm: FormGroup<any>) {
+    console.log(editForm);
   }
 
 }

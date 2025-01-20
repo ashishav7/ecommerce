@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { ApiService } from 'src/app/services/api.service';
 import { ConstantsService } from 'src/app/services/constants.service';
@@ -10,12 +10,16 @@ import { AddItem, Item } from 'src/app/types/add-item';
   styleUrls: ['./add-item.component.scss'],
 })
 export class AddItemComponent implements OnInit {
+
   @Input() itemFormElements:AddItem={
     submitBtnLabel:"Submit",
     formTitle:"Add Product Form",
     imgRequired:false,
-    formElements:[]
-};
+    formElements:[],
+    resetBtnLabel: 'Reset'
+  };
+
+  @Output() actionDone = new EventEmitter<FormGroup>();
   
   itemForm: FormGroup;
   labels: any = {};
@@ -39,5 +43,11 @@ export class AddItemComponent implements OnInit {
   }
   onSubmit(){
     this.isSubmitted=true;
+    if(this.itemForm.valid){
+      this.actionDone.emit(this.itemForm);
+    }
+  }
+  onReset() {
+    this.itemForm.reset();
   }
 }

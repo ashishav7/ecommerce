@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { Validators } from '@angular/forms';
+import { FormGroup, Validators } from '@angular/forms';
 import { ApiService } from 'src/app/services/api.service';
 import { ConstantsService } from 'src/app/services/constants.service';
 import { ErrormessagesService } from 'src/app/services/errormessages.service';
 import { AddItem, Item } from 'src/app/types/add-item';
 import { ValidatorI } from 'src/app/services/validator.service';
+import { ProductFormControlI } from 'src/app/form-group-controls/product';
 
 @Component({
   selector: 'app-product-add',
@@ -22,6 +23,7 @@ export class ProductAddComponent implements OnInit {
     formTitle: 'Add Product Form',
     imgRequired: false,
     formElements: [],
+    resetBtnLabel : 'Reset'
   };
   constructor(
     labels: ConstantsService,
@@ -51,7 +53,7 @@ export class ProductAddComponent implements OnInit {
       '-1',
       'text',
       this.labels.name,
-      'name',
+      ProductFormControlI.productName,
       this.labels.productNamePlaceholder,
       [Validators.required, Validators.minLength(3)],
       [
@@ -66,7 +68,7 @@ export class ProductAddComponent implements OnInit {
       '-1',
       'textarea',
       this.labels.description,
-      'description',
+      ProductFormControlI.productDescription,
       this.labels.productDescriptionPlaceholder,
       [Validators.required],
       [
@@ -83,7 +85,7 @@ export class ProductAddComponent implements OnInit {
       '-1',
       'dropdown',
       this.labels.category,
-      'category',
+      ProductFormControlI.productCategory,
       this.labels.productDescriptionPlaceholder,
       [Validators.required],
       [{ key: ValidatorI.required, value: this.errorMessages.productCategoryRequired }],
@@ -95,7 +97,7 @@ export class ProductAddComponent implements OnInit {
       '-1',
       'number',
       this.labels.quantity,
-      'quantity',
+      ProductFormControlI.productQuantity,
       this.labels.productQuantityPlaceholder,
       [Validators.required],
       [{ key: ValidatorI.required, value: this.errorMessages.productQuantityRequired }],
@@ -107,7 +109,7 @@ export class ProductAddComponent implements OnInit {
       '-1',
       'number',
       this.labels.sellingPrice,
-      'sellingPrice',
+      ProductFormControlI.productSellingPrice,
       this.labels.productSellingPricePlaceholder,
       [Validators.required],
       [
@@ -124,7 +126,7 @@ export class ProductAddComponent implements OnInit {
       '-1',
       'number',
       this.labels.costPrice,
-      'costPrice',
+      ProductFormControlI.productCostPrice,
       this.labels.productCostPricePlaceholder,
       [Validators.required],
       [{ key: ValidatorI.required, value: this.errorMessages.productCostPriceRequired }],
@@ -136,12 +138,16 @@ export class ProductAddComponent implements OnInit {
       '-1',
       'image',
       this.labels.image,
-      'image',
+      ProductFormControlI.productImage,
       this.labels.productDescriptionPlaceholder,
       [Validators.required],
-      [{ key: ValidatorI.required, value: this.errorMessages.productImageRequired }],
+      [{ key: ValidatorI.required, value: this.errorMessages.ProductFormControlImageRequired }],
       [{ value: '', name: '' }]
     );
+  }
+
+  addProduct(addProductForm: FormGroup<any>) {
+    console.log("Add Product Form ", addProductForm);
   }
 }
 
