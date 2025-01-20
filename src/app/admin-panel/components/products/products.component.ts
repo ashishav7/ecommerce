@@ -56,9 +56,8 @@ export class ProductsComponent implements OnInit {
       required: true,
       label: this.labels.sortByLabel,
       options: [
-        { value: 'name', name: 'Name' },
-        { value: 'category', name: 'Category' },
-        { value: 'costPrice', name: 'Price' },
+        { value: 'title', name: 'Name' },
+        { value: 'contentStrongItem1Value', name: 'Price'},
       ],
     };
     this.paginationConfig = {

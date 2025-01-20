@@ -5,6 +5,7 @@ import { ConstantsAdminService } from 'src/app/services/admin/constants-admin.se
 import { CommonService } from 'src/app/services/common.service';
 import { ConstantsService } from 'src/app/services/constants.service';
 import { ItemConf, ListItem } from 'src/app/types/list-item';
+import { RegexUtil } from 'src/app/types/regex';
 
 @Component({
   selector: 'app-item-listing',
@@ -72,9 +73,8 @@ constructor(
     this.updatePaginatedItems();
   }
   applyFilter() {
-      this.filteredItems = this.list.filter((item:any) =>
-        item.name.toLowerCase().includes(this.searchQuery.toLowerCase()) ||
-        item.category.toLowerCase().includes(this.searchQuery.toLowerCase())
+      this.filteredItems = this.list.filter((item:ListItem) =>
+        item.title.toLowerCase().includes(this.searchQuery.toLowerCase())
       );
       this.updatePaginatedItems();
     }
@@ -84,6 +84,9 @@ constructor(
         const valueB = b[this.sortOption];
   
         if (typeof valueA === 'string' && typeof valueB === 'string') {
+          if(RegexUtil.isNumeric(valueA) && RegexUtil.isNumeric(valueB)){
+            return parseInt(valueA, 10) - parseInt(valueB,10);  
+          }
           return valueA.localeCompare(valueB); // String comparison
         } else if (typeof valueA === 'number' && typeof valueB === 'number') {
           return valueA - valueB; // Numeric comparison

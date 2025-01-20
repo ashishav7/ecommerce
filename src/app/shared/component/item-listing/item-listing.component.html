@@ -38,6 +38,9 @@
     ></app-card-item>
   </mat-card>
 </div>
+
+<div *ngIf="paginatedItems.length == 0">No Items Found</div>
+
 <mat-paginator *ngIf="paginationConfig.required"
   [length]="filteredItems.length"
   [pageSize]="paginationConfig.pagesize"

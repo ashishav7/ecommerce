@@ -39,6 +39,7 @@ export class ConstantsService {
     categoryNamePlaceholder:"Category Name Placeholder",
     slugLabel:"Slug",
     slugPlaceholder:"Slug Placeholder",
-    categoryImage:"Category Image"
+    categoryImage:"Category Image",
+    addCategory:"Add Category"
   };
 }

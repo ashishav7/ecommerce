@@ -11,24 +11,25 @@ export class ApiService {
   getCategories(){
     return [
       {
-        categoryId: 1,
-        categoryName: 'Electronics',
+        code:"Code",
+        name:"ZElectronics",
+        image:"assets/DSC_5356.JPG",
+        slug:"Category Slug",
+        description:"Category Description"
       },
       {
-        categoryId: 2,
-        categoryName: 'Electronics2',
+        code:"Code2",
+        name:"Electronics2",
+        image:"assets/DSC_5356.JPG",
+        slug:"Category Slug2",
+        description:"Category Description2"
       },
       {
-        categoryId: 3,
-        categoryName: 'Electronics3',
-      },
-      {
-        categoryId: 4,
-        categoryName: 'Electronics4',
-      },
-      {
-        categoryId: 5,
-        categoryName: 'Electronics5',
+        code:"Code3",
+        name:"Electronics3",
+        image:"assets/DSC_5356.JPG",
+        slug:"Category Slug3",
+        description:"Category Description3"
       }
     ];
   }
