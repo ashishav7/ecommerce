@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { ApiAdminService } from 'src/app/services/admin/api-admin.service';
 import { ApiService } from 'src/app/services/api.service';
+import { CommonService } from 'src/app/services/common.service';
 import { ConstantsService } from 'src/app/services/constants.service';
 import { Category } from 'src/app/types/category';
 import { ItemConf, ListItem } from 'src/app/types/list-item';
@@ -27,7 +29,12 @@ export class CategoryComponent implements OnInit {
   paginationConfig: any = {};
   labels: any = {};
 
-  constructor(private api: ApiService, labels: ConstantsService) {
+  constructor(
+    private api: ApiService,
+    labels: ConstantsService,
+    public CS : CommonService,
+    public router : Router
+  ) {
     this.labels = labels.labelMessages;
   }
 
@@ -56,7 +63,8 @@ export class CategoryComponent implements OnInit {
     console.log("Delete Category");
   }
   editFunction(category: Category): any {
-    console.log(category);
+    this.CS.category=category;
+    this.router.navigate(['/admin-panel/category/edit']);
   }
   setConfigBtns() {
     this.addCategoryBtn = {
