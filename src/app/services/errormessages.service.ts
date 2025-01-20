@@ -15,6 +15,9 @@ export class ErrormessagesService {
     productQuantityRequired : "Quantity is required",
     productCostPriceRequired : "Cost Price is required",
     productSellingPriceRequired : "Selling Price is required",
-    productImageRequired : "Product Image is required"
+    productImageRequired : "Product Image is required",
+    categoryImageRequired: "Category Image is required",
+    categoryNameRequired : "Category Name is required",
+    categorySlugRequired : "Category Slug is requried",
   }
 }

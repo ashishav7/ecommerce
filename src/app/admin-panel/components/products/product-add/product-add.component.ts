@@ -23,7 +23,7 @@ export class ProductAddComponent implements OnInit {
     formTitle: 'Add Product Form',
     imgRequired: false,
     formElements: [],
-    resetBtnLabel : 'Reset'
+    resetBtnLabel: 'Reset',
   };
   constructor(
     labels: ConstantsService,
@@ -57,7 +57,10 @@ export class ProductAddComponent implements OnInit {
       this.labels.productNamePlaceholder,
       [Validators.required, Validators.minLength(3)],
       [
-        { key: ValidatorI.required, value: this.errorMessages.productNameRequired },
+        {
+          key: ValidatorI.required,
+          value: this.errorMessages.productNameRequired,
+        },
         { key: ValidatorI.minlength, value: this.errorMessages.minLength },
       ],
       [{ value: '', name: '' }]
@@ -88,7 +91,12 @@ export class ProductAddComponent implements OnInit {
       ProductFormControlI.productCategory,
       this.labels.productDescriptionPlaceholder,
       [Validators.required],
-      [{ key: ValidatorI.required, value: this.errorMessages.productCategoryRequired }],
+      [
+        {
+          key: ValidatorI.required,
+          value: this.errorMessages.productCategoryRequired,
+        },
+      ],
       this.options
     );
 
@@ -100,7 +108,12 @@ export class ProductAddComponent implements OnInit {
       ProductFormControlI.productQuantity,
       this.labels.productQuantityPlaceholder,
       [Validators.required],
-      [{ key: ValidatorI.required, value: this.errorMessages.productQuantityRequired }],
+      [
+        {
+          key: ValidatorI.required,
+          value: this.errorMessages.productQuantityRequired,
+        },
+      ],
       [{ value: '', name: '' }]
     );
 
@@ -129,7 +142,12 @@ export class ProductAddComponent implements OnInit {
       ProductFormControlI.productCostPrice,
       this.labels.productCostPricePlaceholder,
       [Validators.required],
-      [{ key: ValidatorI.required, value: this.errorMessages.productCostPriceRequired }],
+      [
+        {
+          key: ValidatorI.required,
+          value: this.errorMessages.productCostPriceRequired,
+        },
+      ],
       [{ value: '', name: '' }]
     );
 
@@ -141,13 +159,18 @@ export class ProductAddComponent implements OnInit {
       ProductFormControlI.productImage,
       this.labels.productDescriptionPlaceholder,
       [Validators.required],
-      [{ key: ValidatorI.required, value: this.errorMessages.ProductFormControlImageRequired }],
+      [
+        {
+          key: ValidatorI.required,
+          value: this.errorMessages.ProductFormControlImageRequired,
+        },
+      ],
       [{ value: '', name: '' }]
     );
   }
 
   addProduct(addProductForm: FormGroup<any>) {
-    console.log("Add Product Form ", addProductForm);
+    console.log('Add Product Form ', addProductForm);
   }
 }
 
@@ -173,7 +196,7 @@ function addToItemFormElementsArray(
     validators: validators,
     errorMessages: errorMessages,
     options: options,
-    initialValue:''
+    initialValue: '',
   };
   component.itemFormElements.formElements.push(item);
 }
