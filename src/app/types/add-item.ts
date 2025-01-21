@@ -15,7 +15,7 @@ export interface Item{
 
 export type SubOption = {
   parentControlName: string;
-  options: { value: string; name: string }[];
+  options: { value: string; name: string; parentCode:string }[];
 };
 
 export type ItemArray = Item[];

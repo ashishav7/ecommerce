@@ -105,6 +105,40 @@ export class ProductEditComponent implements OnInit {
     ;
     this.itemFormElements.formElements.push(itemElement);
 
+
+    itemElement = new ItemFormElementBuilder()
+    .setType('subdropdown')
+    .setFormControlName(ProductFormControlI.productSubCategory)
+    .setLabel(this.labels.subCategory)
+    .setSubOptions({
+      parentControlName:ProductFormControlI.productCategory,
+      options:[
+        {
+          value:'ZELEC1',
+          name:'ZElectronic SubCat1'
+          ,parentCode:'Code'
+        },
+        {
+          value:'ZELEC2',
+          name:'ZElectronic SubCat2'
+          ,parentCode:'Code'
+        },
+        {
+          value:'ELEC1',
+          name:'SubCat1'
+          ,parentCode:'Code2'
+        },
+        {
+          value:'ELEC2',
+          name:'SubCat2'
+          ,parentCode:'Code2'
+        }
+      ]
+    })
+    .setInitialValue(this.product.subCategory)
+    .build();
+  this.itemFormElements.formElements.push(itemElement);
+
     itemElement = new ItemFormElementBuilder()
     .setType('number')
     .setFormControlName(ProductFormControlI.productQuantity)

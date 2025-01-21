@@ -20,7 +20,9 @@ export class AddItemComponent implements OnInit {
   };
 
   @Output() actionDone = new EventEmitter<FormGroup>();
-  public subDrowdown:Map<string, {value:string,name:string}[]> = new Map(); 
+  public subDrowdown:Map<string, {value:string; name:string; parentCode:string}[]> = new Map(); 
+  public subDrowdown2:Map<string, {value:string; name:string; parentCode:string}[] | undefined> = new Map(); 
+  
   itemForm: FormGroup;
   labels: any = {};
   isSubmitted: boolean = false;
@@ -53,4 +55,13 @@ export class AddItemComponent implements OnInit {
   onReset() {
     this.itemForm.reset();
   }
+
+  selectSubdropdowns(parentFormControl :string) {
+    let parentCode = '';
+    if(this.itemForm.get(parentFormControl)!=null || this.itemForm.get(parentFormControl)!=undefined){
+      parentCode = this.itemForm.get(parentFormControl)?.value;
+    }
+    this.subDrowdown2.set(parentFormControl,this.subDrowdown.get(parentFormControl)?.filter(opt => opt.parentCode == parentCode));
+  }
+
 }

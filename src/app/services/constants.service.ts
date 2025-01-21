@@ -42,6 +42,7 @@ export class ConstantsService {
     categoryImage:"Category Image",
     addCategory:"Add Category",
     categoryDescription : "Category Description",
-    categoryDescriptionPlaceholder : "Category Desc Placeholder"
+    categoryDescriptionPlaceholder : "Category Desc Placeholder",
+    subCategory:"Sub Category"
   };
 }

@@ -6,4 +6,5 @@ export class ProductFormControlI{
     static productSellingPrice:string='sellingPrice';
     static productCostPrice:string='costPrice';
     static productCategory:string='category';
+    static productSubCategory:string='subCategory';
 }

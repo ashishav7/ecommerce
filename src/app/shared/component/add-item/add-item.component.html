@@ -63,7 +63,7 @@
         *ngIf="item.type === 'dropdown'"
       >
         <mat-label>{{ item.label }}</mat-label>
-        <mat-select [formControlName]="item.formControlName">
+        <mat-select [formControlName]="item.formControlName" (selectionChange)="selectSubdropdowns(item.formControlName)">
           <mat-option
             *ngFor="let option of item.options"
             [value]="option.value"
@@ -95,8 +95,8 @@
         <mat-label>{{ item.label }}</mat-label>
         <mat-select [formControlName]="item.formControlName">
           <mat-option
-            *ngFor="let option of subDrowdown.get(item.subOptions.parentControlName)"
-            [value]="option. value"
+            *ngFor="let option of subDrowdown2.get(item.subOptions.parentControlName)"
+            [value]="option.value"
           >
             {{ option.name }}
           </mat-option>
