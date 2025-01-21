@@ -150,13 +150,23 @@
       <div
         class="file-input"
         *ngIf="itemFormElements.imgRequired && item.type === 'image'"
+        style="display: flex; align-items: center; gap: 10px;"
       >
         <label for="image">{{ item.label }}</label>
         <input
           type="file"
           id="image"
+          accept="image/*"
+          (change)="onImageSelected($event,item.formControlName)"
           [formControlName]="item.formControlName"
         />
+        <div *ngIf="imagePreview" style="border: 1px solid #ccc; width: 100px; height: 100px;">
+          <img
+            [src]="imagePreview"
+            alt="Preview"
+            style="max-width: 100%; max-height: 100%;"
+          />
+        </div>
         <span
           *ngIf="
             itemForm.invalid &&

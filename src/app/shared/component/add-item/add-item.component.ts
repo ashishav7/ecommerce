@@ -10,7 +10,6 @@ import { AddItem, Item, SubOption } from 'src/app/types/add-item';
   styleUrls: ['./add-item.component.scss'],
 })
 export class AddItemComponent implements OnInit {
-
   @Input() itemFormElements:AddItem={
     submitBtnLabel:"Submit",
     formTitle:"Add Product Form",
@@ -26,6 +25,7 @@ export class AddItemComponent implements OnInit {
   itemForm: FormGroup;
   labels: any = {};
   isSubmitted: boolean = false;
+  imagePreview: any;
   constructor(
     fb: FormBuilder,
     labels: ConstantsService,
@@ -54,6 +54,7 @@ export class AddItemComponent implements OnInit {
   }
   onReset() {
     this.itemForm.reset();
+    this.imagePreview = null;
   }
 
   selectSubdropdowns(parentFormControl :string) {
@@ -63,5 +64,31 @@ export class AddItemComponent implements OnInit {
     }
     this.subDrowdown2.set(parentFormControl,this.subDrowdown.get(parentFormControl)?.filter(opt => opt.parentCode == parentCode));
   }
+
+
+  onImageSelected(event: Event,controlName:string): void {
+    const fileInput = event.target as HTMLInputElement;
+
+    // Check if the user has selected a file
+    if (fileInput.files && fileInput.files.length > 0) {
+      const file = fileInput.files[0];
+
+      // Validate that the selected file is an image
+      if (file.type.startsWith('image/')) {
+        // Preview the image
+        const reader = new FileReader();
+        reader.onload = () => {
+          this.imagePreview = reader.result as string;
+        };
+        reader.readAsDataURL(file);
+      } else {
+        // If the file is not an image, reset the form control
+        this.itemForm.get(controlName)?.reset();
+        this.imagePreview = null;
+        alert('Please select a valid image file.');
+      }
+    }
+  }
+    
 
 }
