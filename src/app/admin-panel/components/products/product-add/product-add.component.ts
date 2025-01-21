@@ -3,9 +3,10 @@ import { FormGroup, Validators } from '@angular/forms';
 import { ApiService } from 'src/app/services/api.service';
 import { ConstantsService } from 'src/app/services/constants.service';
 import { ErrormessagesService } from 'src/app/services/errormessages.service';
-import { AddItem, Item } from 'src/app/types/add-item';
-import { ValidatorI } from 'src/app/services/validator.service';
+import { AddItem } from 'src/app/types/add-item';
 import { ProductFormControlI } from 'src/app/form-group-controls/product';
+import { ItemFormElementBuilder } from 'src/app/helper/form-add-helper';
+import { ValidatorI } from 'src/app/services/validator.service';
 
 @Component({
   selector: 'app-product-add',
@@ -38,165 +39,123 @@ export class ProductAddComponent implements OnInit {
     this.categories = this.api.getCategories();
     for (const cat of this.categories) {
       this.options.push({
-        value: cat.categoryId,
-        name: cat.categoryName,
+        value: cat.code,
+        name: cat.name,
       });
     }
   }
+
   constructForm() {
     this.itemFormElements.formTitle = this.labels.addProductForm;
     this.itemFormElements.imgRequired = true;
     this.itemFormElements.submitBtnLabel = this.labels.submitLabel;
-    let component = this;
-    addToItemFormElementsArray(
-      component,
-      '-1',
-      'text',
-      this.labels.name,
-      ProductFormControlI.productName,
-      this.labels.productNamePlaceholder,
-      [Validators.required, Validators.minLength(3)],
-      [
+
+    let itemElement = new ItemFormElementBuilder()
+      .setType('text')
+      .setFormControlName(ProductFormControlI.productName)
+      .setLabel(this.labels.name)
+      .setValidators([Validators.required, Validators.minLength(3)])
+      .setErrorMessages([
         {
           key: ValidatorI.required,
           value: this.errorMessages.productNameRequired,
         },
         { key: ValidatorI.minlength, value: this.errorMessages.minLength },
-      ],
-      [{ value: '', name: '' }]
-    );
+      ])
+      .setPlaceholder(this.labels.productNamePlaceholder)
+      .build();
+    this.itemFormElements.formElements.push(itemElement);
 
-    addToItemFormElementsArray(
-      component,
-      '-1',
-      'textarea',
-      this.labels.description,
-      ProductFormControlI.productDescription,
-      this.labels.productDescriptionPlaceholder,
-      [Validators.required],
-      [
+    itemElement = new ItemFormElementBuilder()
+      .setType('textarea')
+      .setFormControlName(ProductFormControlI.productDescription)
+      .setLabel(this.labels.description)
+      .setValidators([Validators.required])
+      .setErrorMessages([
         {
           key: ValidatorI.required,
           value: this.errorMessages.productDescriptionRequired,
         },
-      ],
-      [{ value: '', name: '' }]
-    );
+      ])
+      .setPlaceholder(this.labels.productDescriptionPlaceholder)
+      .build();
+    this.itemFormElements.formElements.push(itemElement);
 
-    addToItemFormElementsArray(
-      component,
-      '-1',
-      'dropdown',
-      this.labels.category,
-      ProductFormControlI.productCategory,
-      this.labels.productDescriptionPlaceholder,
-      [Validators.required],
-      [
+    itemElement = new ItemFormElementBuilder()
+      .setType('dropdown')
+      .setFormControlName(ProductFormControlI.productCategory)
+      .setLabel(this.labels.category)
+      .setValidators([Validators.required])
+      .setErrorMessages([
         {
           key: ValidatorI.required,
           value: this.errorMessages.productCategoryRequired,
         },
-      ],
-      this.options
-    );
+      ])
+      .setOptions(this.options)
+      .build();
+    this.itemFormElements.formElements.push(itemElement);
 
-    addToItemFormElementsArray(
-      component,
-      '-1',
-      'number',
-      this.labels.quantity,
-      ProductFormControlI.productQuantity,
-      this.labels.productQuantityPlaceholder,
-      [Validators.required],
-      [
+    itemElement = new ItemFormElementBuilder()
+      .setType('number')
+      .setFormControlName(ProductFormControlI.productQuantity)
+      .setLabel(this.labels.quantity)
+      .setValidators([Validators.required])
+      .setErrorMessages([
         {
           key: ValidatorI.required,
           value: this.errorMessages.productQuantityRequired,
         },
-      ],
-      [{ value: '', name: '' }]
-    );
+      ])
+      .setPlaceholder(this.labels.productQuantityPlaceholder)
+      .build();
+    this.itemFormElements.formElements.push(itemElement);
 
-    addToItemFormElementsArray(
-      component,
-      '-1',
-      'number',
-      this.labels.sellingPrice,
-      ProductFormControlI.productSellingPrice,
-      this.labels.productSellingPricePlaceholder,
-      [Validators.required],
-      [
+    itemElement = new ItemFormElementBuilder()
+      .setType('number')
+      .setFormControlName(ProductFormControlI.productSellingPrice)
+      .setLabel(this.labels.sellingPrice)
+      .setValidators([Validators.required])
+      .setErrorMessages([
         {
           key: ValidatorI.required,
           value: this.errorMessages.productSellingPriceRequired,
         },
-      ],
-      [{ value: '', name: '' }]
-    );
+      ])
+      .setPlaceholder(this.labels.productSellingPricePlaceholder)
+      .build();
+    this.itemFormElements.formElements.push(itemElement);
 
-    addToItemFormElementsArray(
-      component,
-      '-1',
-      'number',
-      this.labels.costPrice,
-      ProductFormControlI.productCostPrice,
-      this.labels.productCostPricePlaceholder,
-      [Validators.required],
-      [
+    itemElement = new ItemFormElementBuilder()
+      .setType('number')
+      .setFormControlName(ProductFormControlI.productCostPrice)
+      .setLabel(this.labels.costPrice)
+      .setValidators([Validators.required])
+      .setErrorMessages([
         {
           key: ValidatorI.required,
           value: this.errorMessages.productCostPriceRequired,
         },
-      ],
-      [{ value: '', name: '' }]
-    );
+      ])
+      .setPlaceholder(this.labels.productCostPricePlaceholder)
+      .build();
+    this.itemFormElements.formElements.push(itemElement);
 
-    addToItemFormElementsArray(
-      component,
-      '-1',
-      'image',
-      this.labels.image,
-      ProductFormControlI.productImage,
-      this.labels.productDescriptionPlaceholder,
-      [Validators.required],
-      [
+    itemElement = new ItemFormElementBuilder()
+      .setType('image')
+      .setFormControlName(ProductFormControlI.productImage)
+      .setLabel(this.labels.image)
+      .setValidators([Validators.required])
+      .setErrorMessages([
         {
           key: ValidatorI.required,
           value: this.errorMessages.ProductFormControlImageRequired,
         },
-      ],
-      [{ value: '', name: '' }]
-    );
+      ])
+      .build();
+    this.itemFormElements.formElements.push(itemElement);
   }
-
   addProduct(addProductForm: FormGroup<any>) {
     console.log('Add Product Form ', addProductForm);
   }
-}
-
-function addToItemFormElementsArray(
-  component: any,
-  id: string,
-  type: string,
-  label: string,
-  formControlName: string,
-  placeholder: string,
-  validators: ((
-    control: import('@angular/forms').AbstractControl
-  ) => import('@angular/forms').ValidationErrors | null)[],
-  errorMessages: { key: string; value: string }[],
-  options: { value: string; name: string }[]
-) {
-  let item: Item = {
-    id: id,
-    type: type,
-    label: label,
-    formControlName: formControlName,
-    placeholder: placeholder,
-    validators: validators,
-    errorMessages: errorMessages,
-    options: options,
-    initialValue: '',
-  };
-  component.itemFormElements.formElements.push(item);
 }

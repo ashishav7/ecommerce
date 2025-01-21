@@ -86,6 +86,38 @@
         </span>
       </mat-form-field>
 
+      <!-- Sub-Options -->
+      <mat-form-field
+        appearance="outline"
+        class="full-width"
+        *ngIf="item.type === 'subdropdown'"
+      >
+        <mat-label>{{ item.label }}</mat-label>
+        <mat-select [formControlName]="item.formControlName">
+          <mat-option
+            *ngFor="let option of subDrowdown.get(item.subOptions.parentControlName)"
+            [value]="option. value"
+          >
+            {{ option.name }}
+          </mat-option>
+        </mat-select>
+        <span
+          *ngIf="
+            itemForm.invalid &&
+            (itemForm.get(item.formControlName)?.touched || isSubmitted)
+          "
+        >
+          <div *ngFor="let error of item.errorMessages">
+            <mat-error
+              *ngIf="itemForm.get(item.formControlName)?.hasError(error.key)"
+              >{{ error.value }}</mat-error
+            >
+          </div>
+        </span>
+      </mat-form-field>
+
+
+
       <!-- Quantity -->
       <mat-form-field
         appearance="outline"

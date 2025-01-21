@@ -2,7 +2,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { ApiService } from 'src/app/services/api.service';
 import { ConstantsService } from 'src/app/services/constants.service';
-import { AddItem, Item } from 'src/app/types/add-item';
+import { AddItem, Item, SubOption } from 'src/app/types/add-item';
 
 @Component({
   selector: 'app-add-item',
@@ -20,7 +20,7 @@ export class AddItemComponent implements OnInit {
   };
 
   @Output() actionDone = new EventEmitter<FormGroup>();
-  
+  public subDrowdown:Map<string, {value:string,name:string}[]> = new Map(); 
   itemForm: FormGroup;
   labels: any = {};
   isSubmitted: boolean = false;
@@ -34,6 +34,9 @@ export class AddItemComponent implements OnInit {
   }
   ngOnInit(): void {
     this.itemFormElements.formElements.forEach((element)=>{
+        if(element.type === 'subdropdown'){
+          this.subDrowdown.set(element.subOptions.parentControlName,element.subOptions.options);
+        }
         this.addDynamicControl(element);
     });
   }

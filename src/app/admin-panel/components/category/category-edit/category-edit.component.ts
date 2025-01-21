@@ -1,12 +1,15 @@
 import { Component } from '@angular/core';
 import { FormGroup, Validators } from '@angular/forms';
 import { CategoryFormControlI } from 'src/app/form-group-controls/category';
+import {
+  ItemFormElementBuilder,
+} from 'src/app/helper/form-add-helper';
 import { ApiService } from 'src/app/services/api.service';
 import { CommonService } from 'src/app/services/common.service';
 import { ConstantsService } from 'src/app/services/constants.service';
 import { ErrormessagesService } from 'src/app/services/errormessages.service';
 import { ValidatorI } from 'src/app/services/validator.service';
-import { AddItem, Item } from 'src/app/types/add-item';
+import { AddItem } from 'src/app/types/add-item';
 import { Category } from 'src/app/types/category';
 
 @Component({
@@ -19,7 +22,7 @@ export class CategoryEditComponent {
   labels: any = {};
   itemFormElements: AddItem = {
     submitBtnLabel: 'Submit',
-    formTitle: 'Add Category Form',
+    formTitle: 'Edit Category Form',
     imgRequired: true,
     formElements: [],
     resetBtnLabel: 'Reset',
@@ -49,93 +52,60 @@ export class CategoryEditComponent {
   }
 
   constructForm() {
-    this.addToItemFormElementsArray(
-      '-1',
-      'text',
-      this.labels.categoryName,
-      CategoryFormControlI.categoryName,
-      this.labels.categoryNamePlaceholder,
-      [Validators.required],
-      [
+    let itemElement = new ItemFormElementBuilder()
+      .setType('text')
+      .setFormControlName(CategoryFormControlI.categoryName)
+      .setLabel(this.labels.categoryName)
+      .setValidators([Validators.required])
+      .setErrorMessages([
         {
           key: ValidatorI.required,
           value: this.errorMessages.categoryNameRequired,
         },
-      ],
-      [{ value: '', name: '' }],
-      this.category.name
-    );
+      ])
+      .setPlaceholder(this.labels.categoryNamePlaceholder)
+      .setInitialValue(this.category.name)
+      .build();
+    this.itemFormElements.formElements.push(itemElement);
 
-    this.addToItemFormElementsArray(
-      '-1',
-      'text',
-      this.labels.slugLabel,
-      CategoryFormControlI.categorySlug,
-      this.labels.slugPlaceholder,
-      [Validators.required],
-      [
+    itemElement = new ItemFormElementBuilder()
+      .setType('text')
+      .setFormControlName(CategoryFormControlI.categorySlug)
+      .setLabel(this.labels.slugLabel)
+      .setValidators([Validators.required])
+      .setErrorMessages([
         {
           key: ValidatorI.required,
           value: this.errorMessages.categorySlugRequired,
         },
-      ],
-      [{ value: '', name: '' }],
-      this.category.slug
-    );
+      ])
+      .setPlaceholder(this.labels.slugPlaceholder)
+      .setInitialValue(this.category.slug)
+      .build();
+    this.itemFormElements.formElements.push(itemElement);
 
-    this.addToItemFormElementsArray(
-      '-1',
-      'textarea',
-      this.labels.categoryDescription,
-      CategoryFormControlI.categoryDescription,
-      this.labels.categoryDescriptionPlaceholder,
-      [],
-      [],
-      [],
-      this.category.description
-    );
+    itemElement = new ItemFormElementBuilder()
+      .setType('textarea')
+      .setFormControlName(CategoryFormControlI.categoryDescription)
+      .setLabel(this.labels.categoryDescription)
+      .setPlaceholder(this.labels.categoryDescriptionPlaceholder)
+      .setInitialValue(this.category.description)
+      .build();
+    this.itemFormElements.formElements.push(itemElement);
 
-    this.addToItemFormElementsArray(
-      '-1',
-      'image',
-      this.labels.categoryImage,
-      CategoryFormControlI.categoryImage,
-      this.labels.productDescriptionPlaceholder,
-      [Validators.required],
-      [
+    itemElement = new ItemFormElementBuilder()
+      .setType('image')
+      .setFormControlName(CategoryFormControlI.categoryImage)
+      .setLabel(this.labels.categoryImage)
+      .setValidators([Validators.required])
+      .setErrorMessages([
         {
           key: ValidatorI.required,
           value: this.errorMessages.categoryImageRequired,
         },
-      ],
-      [{ value: '', name: '' }],
-      this.category.image
-    );
-  }
-  addToItemFormElementsArray(
-    id: string,
-    type: string,
-    label: string,
-    formControlName: string,
-    placeholder: string,
-    validators: ((
-      control: import('@angular/forms').AbstractControl
-    ) => import('@angular/forms').ValidationErrors | null)[],
-    errorMessages: { key: string; value: string }[],
-    options: { value: string; name: string }[],
-    initialValue: string
-  ) {
-    let item: Item = {
-      id: id,
-      type: type,
-      label: label,
-      formControlName: formControlName,
-      placeholder: placeholder,
-      validators: validators,
-      errorMessages: errorMessages,
-      options: options,
-      initialValue: initialValue,
-    };
-    this.itemFormElements.formElements.push(item);
+      ])
+      .setInitialValue(this.category.image)
+      .build();
+    this.itemFormElements.formElements.push(itemElement);
   }
 }

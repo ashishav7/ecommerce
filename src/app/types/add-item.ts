@@ -9,8 +9,14 @@ export interface Item{
     errorMessages:{key:string,value:string}[];
     validators:ValidatorFn[];
     options:{value:string,name:string}[];
+    subOptions:SubOption,
     initialValue:string;
 }
+
+export type SubOption = {
+  parentControlName: string;
+  options: { value: string; name: string }[];
+};
 
 export type ItemArray = Item[];
 
